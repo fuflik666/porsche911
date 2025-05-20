@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Porsche - Головна</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Головна</a></li>
+                <li><a href="catalog.html">Каталог моделей</a></li>
+                <li><a href="gallery.html">Галерея</a></li>
+                <li><a href="about.html">Про автора</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h1>Історія Porsche</h1>
+            <p>Ласкаво просимо на сайт, присвячений легендарному бренду Porsche!</p>
+            <p>Дізнайтеся більше про унікальну історію автомобілів, які підкорюють дороги та серця.</p>
+            <p>Porsche була заснована Фердинандом Порше в 1931 році в Німеччині. Спочатку компанія спеціалізувалася на консалтингу та розробці автомобільних технологій. Перший власний автомобіль Porsche, модель 356, був випущений в 1948 році і відразу отримав популярність завдяки своїм спортивним характеристикам. Згодом Porsche став синонімом високоякісних спортивних автомобілів, а модель 911, випущена в 1964 році, стала однією з найвідоміших у світі. Компанія продовжує розвиватися, випускаючи автомобілі з високими технічними характеристиками та стильним дизайном.</p>
+        </section>
+    </main>
+
+    <img src="images/porsche.png" alt="Porsche">
+
+    <!-- Кнопка "вгору" -->
+    <button id="toTop">↑</button>
+
+    <!-- Кнопка входу -->
+    <button id="loginBtn" style="position: fixed; top: 20px; right: 20px; background: red; color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; z-index: 1000;">Увійти</button>
+
+    <!-- Модальне вікно -->
+    <div id="loginModal">
+        <div class="login-box">
+            <h2 style="color: red;">Авторизація</h2>
+            <form id="loginForm">
+                <input type="email" id="email" placeholder="Email">
+                <input type="password" id="password" placeholder="Пароль">
+                <button type="submit">Увійти</button>
+                <p id="errorMsg"></p>
+            </form>
+            <button id="closeModal">Закрити</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>© Котляренко Сергій</p>
+    </footer>
+
+    <script>
+        $(document).ready(function () {
+            // Кнопка "вгору"
+            $(window).scroll(function () {
+                $('body').toggleClass('scrolled', $(this).scrollTop() > 100);
+            });
+
+            $('#toTop').click(function () {
+                $('html, body').animate({ scrollTop: 0 }, 'smooth');
+            });
+
+            // Показати/сховати модальне вікно
+            $("#loginBtn").click(function () {
+                $("#loginModal").fadeToggle();
+            });
+
+            $("#closeModal").click(function () {
+                $("#loginModal").fadeOut();
+                $("#errorMsg").text("");
+                $("#loginForm")[0].reset();
+            });
+
+            // Валідація форми
+            $("#loginForm").submit(function (e) {
+                e.preventDefault();
+                const email = $("#email").val().trim();
+                const password = $("#password").val().trim();
+                const emailRegex = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+                const passwordRegex = /^(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{6,}$/;
+
+                if (!emailRegex.test(email)) {
+                    $("#errorMsg").css("color", "orange").text("Введіть коректну електронну пошту.");
+                } else if (!passwordRegex.test(password)) {
+                    $("#errorMsg").css("color", "orange").text("Пароль має бути мінімум 6 символів та містити спецсимвол.");
+                } else {
+                    $("#errorMsg").css("color", "lightgreen").text("Успішний вхід!");
+                    setTimeout(() => {
+                        $("#loginModal").fadeOut();
+                        $("#loginBtn").fadeOut(); // Сховати кнопку входу
+                    }, 1500);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

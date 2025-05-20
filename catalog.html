@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Porsche - Каталог моделей</title>
+    <link rel="stylesheet" href="css/style.css"> 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Головна</a></li>
+                <li><a href="catalog.html">Каталог моделей</a></li>
+                <li><a href="gallery.html">Галерея</a></li>
+                <li><a href="about.html">Про автора</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Каталог моделей Porsche</h1>
+        <section class="catalog">
+            <div class="card">
+                <img src="images/porsche_911.jpg" alt="Porsche 911">
+                <h2>Porsche 911</h2>
+                <p>Ікона стилю та швидкості. Двигун: 3.0L, 450 к.с.</p>
+            </div>
+            <div class="card">
+                <img src="images/porsche_cayenne.jpg" alt="Porsche Cayenne">
+                <h2>Porsche Cayenne</h2>
+                <p>Розкішний кросовер для кожного дня. Двигун: 4.0L, 550 к.с.</p>
+            </div>
+            <div class="card">
+                <img src="images/porsche_taycan.jpg" alt="Porsche Taycan">
+                <h2>Porsche Taycan</h2>
+                <p>Електрична революція. Дальність ходу: 400 км.</p>
+            </div>
+            <div class="card">
+                <img src="images/porsche_panamera.jpg" alt="Porsche Panamera">
+                <h2>Porsche Panamera</h2>
+                <p>Справжній бізнес-седан. Двигун: 2.9L, 330 к.с.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© Котляренко Сергій</p>
+    </footer>
+
+    <script>
+        $(document).ready(function() {
+            // Плавне появлення карток
+            $(".card").css("opacity", 0).each(function(index) {
+                $(this).delay(200 * index).animate({ opacity: 1, top: "0px" }, 600);
+            });
+
+            // Hover-ефект з анімацією
+            $(".card").hover(
+                function() {
+                    $(this).stop().animate({ marginTop: "-10px" }, 300);
+                },
+                function() {
+                    $(this).stop().animate({ marginTop: "0px" }, 300);
+                }
+            );
+        });
+    </script>
+</body>
+</html>

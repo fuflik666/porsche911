@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Porsche - Галерея</title>
+    <link rel="stylesheet" href="css/style.css"> 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .modal img {
+            border-radius: 10px;
+            box-shadow: 0 0 20px red;
+        }
+        .modal-content {
+            animation: zoomIn 0.4s ease;
+        }
+        @keyframes zoomIn {
+            from {transform: scale(0.5); opacity: 0;}
+            to {transform: scale(1); opacity: 1;}
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Головна</a></li>
+                <li><a href="catalog.html">Каталог моделей</a></li>
+                <li><a href="gallery.html">Галерея</a></li>
+                <li><a href="about.html">Про автора</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Галерея Porsche</h1>
+        <section class="gallery">
+            <div class="gallery-item"><img src="images/porsche_911.jpg" alt="Porsche 911"></div>
+            <div class="gallery-item"><img src="images/porsche_cayenne.jpg" alt="Porsche Cayenne"></div>
+            <div class="gallery-item"><img src="images/porsche_taycan.jpg" alt="Porsche Taycan"></div>
+            <div class="gallery-item"><img src="images/porsche_panamera.jpg" alt="Porsche Panamera"></div>
+            <div class="gallery-item"><img src="images/porsche_718_cayman.jpg" alt="Porsche 718 Cayman"></div>
+            <div class="gallery-item"><img src="images/porsche_macan.jpg" alt="Porsche Macan"></div>
+            <div class="gallery-item"><img src="images/porsche_918_spyder.jpg" alt="Porsche 918 Spyder"></div>
+            <div class="gallery-item"><img src="images/porsche_356.jpg" alt="Porsche 356"></div>
+        </section>
+    </main>
+
+    <div id="myModal" class="modal">
+        <span class="close">&times;</span> 
+        <img class="modal-content" id="img01">
+        <div id="caption"></div>
+    </div>
+
+    <footer>
+        <p>© Котляренко Сергій</p>
+    </footer>
+
+    <script>
+        $(document).ready(function () {
+            // Плавне появлення галереї
+            $('.gallery-item').css({opacity: 0, top: "20px", position: "relative"});
+            $('.gallery-item').each(function (index) {
+                $(this).delay(150 * index).animate({opacity: 1, top: 0}, 500);
+            });
+
+            // Наведення ефект
+            $('.gallery-item img').hover(
+                function () {
+                    $(this).stop().animate({scale: 1.05}, {
+                        duration: 300,
+                        step: function (now, fx) {
+                            $(this).css('transform', `scale(${now})`);
+                        }
+                    });
+                },
+                function () {
+                    $(this).stop().animate({scale: 1}, {
+                        duration: 300,
+                        step: function (now, fx) {
+                            $(this).css('transform', `scale(${now})`);
+                        }
+                    });
+                }
+            );
+
+            // Відкриття модального вікна
+            $('.gallery-item img').click(function () {
+                $('#img01').attr('src', $(this).attr('src'));
+                $('#caption').text($(this).attr('alt'));
+                $('#myModal').fadeIn(300);
+            });
+
+            // Закриття модального
+            $('.close, #myModal').click(function (e) {
+                if (e.target.id === 'myModal' || e.target.className === 'close') {
+                    $('#myModal').fadeOut(300);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

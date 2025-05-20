@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Про автора</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .author-info {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid red;
+            position: relative;
+            z-index: 2;
+        }
+
+        .pulse {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            top: 0;
+            left: 0;
+            border-radius: 50%;
+            background: rgba(255, 0, 0, 0.3);
+            animation: pulseAnimation 2s infinite;
+            z-index: 1;
+        }
+
+        .avatar-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        @keyframes pulseAnimation {
+            0% {
+                transform: scale(1);
+                opacity: 0.6;
+            }
+            70% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 0;
+            }
+        }
+
+        .author-description p {
+            opacity: 0;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Головна</a></li>
+                <li><a href="catalog.html">Каталог моделей</a></li>
+                <li><a href="gallery.html">Галерея</a></li>
+                <li><a href="about.html">Про автора</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1 style="text-align:center;">Про автора</h1>
+        <section class="author-info">
+            <div class="author-photo">
+                <div class="avatar-wrapper">
+                    <div class="pulse"></div>
+                    <img src="images/avatar.jpg" alt="Фото автора" class="avatar">
+                </div>
+            </div>
+            <div class="author-description">
+                <h2 style="color:red;">Котляренко Сергій</h2>
+                <p>Привіт! Мене звати Котляренко Сергій, я створив сайт для індивідуального проєкту, присвяченого бренду Porsche.</p>
+                <p>Я живу в Черкасах та навчаюся в Бізнес коледжі, кафедра комп’ютерної інженерії та інформаційних технологій, відділення інженерії програмного забезпечення.</p>
+                <p>Моя мета — не лише розвивати свої технічні навички, але й поділитися своєю пристрастю до автомобілів з іншими.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© Котляренко Сергій</p>
+    </footer>
+
+    <script>
+        $(document).ready(function () {
+            // Плавна поява секції автора
+            $('.author-info').css('opacity', '1').css('transform', 'translateY(0)');
+
+            // Плавна поява кожного абзацу з затримкою
+            $('.author-description p').each(function (index) {
+                $(this).delay(index * 300).animate({opacity: 1, top: 0}, 600);
+            });
+
+            // Ховер ефект на аватар
+            $('.avatar').hover(
+                function () {
+                    $(this).css('box-shadow', '0 0 20px red');
+                },
+                function () {
+                    $(this).css('box-shadow', 'none');
+                }
+            );
+        });
+    </script>
+</body>
+</html>

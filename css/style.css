@@ -1,0 +1,389 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(120deg, #000, #444);
+    color: #fff;
+}
+
+header {
+    background-color: #111;
+    padding: 10px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    margin: 0 15px;
+    position: relative;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+nav ul li a::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 2px;
+    background: red;
+    transition: width 0.3s;
+    margin-top: 5px;
+}
+
+nav ul li a:hover {
+    color: red;
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+main {
+    padding: 40px;
+    text-align: center;
+    animation: fadeIn 1s ease;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: red;
+    animation: slideIn 1s ease;
+}
+
+p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+footer {
+    text-align: center;
+    padding: 15px;
+    background-color: #111;
+    color: #fff;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+footer a {
+    color: red;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+#toTop {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: red;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+#toTop:hover {
+    background: #e60000;
+}
+
+body.scrolled #toTop {
+    display: block;
+}
+
+
+
+
+.catalog {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.card {
+    background-color: #222;
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+    padding: 20px;
+    width: 300px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
+}
+
+.card img {
+    width: 100%;
+    border-radius: 10px 10px 0 0;
+}
+
+.card h2 {
+    color: red;
+    margin: 10px 0;
+}
+
+.card p {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #ddd;
+}
+
+
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.gallery-item img:hover {
+    transform: scale(1.05);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    overflow: auto;
+    padding: 60px;
+    text-align: center;
+}
+
+.modal-content {
+    max-width: 80%;
+    max-height: 80%;
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+ 
+.author-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    padding: 40px;
+    text-align: center;
+}
+
+.author-photo {
+    flex: 1;
+}
+
+.avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 5px solid #000;
+}
+
+.author-description {
+    flex: 2;
+}
+
+.author-description h2 {
+    font-size: 2rem;
+    color: #ff0000;
+    margin-bottom: 10px;
+}
+
+.author-description p {
+    font-size: 1.1rem;
+    color: #ffffff;
+    line-height: 1.5;
+}
+#loginModal {
+    display: none;
+    position: absolute;
+    top: 60px; /* розміщення під кнопкою */
+    right: 20px;
+    background: #111;
+    padding: 25px;
+    border-radius: 10px;
+    z-index: 999;
+    width: 300px;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+}
+
+.login-box input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 12px;
+    border: none;
+    border-radius: 5px;
+}
+
+.login-box button[type="submit"] {
+    background: red;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+}
+
+#closeModal {
+    margin-top: 10px;
+    background: transparent;
+    color: red;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    display: block;
+    width: 100%;
+}
+
+#errorMsg {
+    color: orange;
+    margin-top: 10px;
+    font-size: 0.9rem;
+}
+
+body.scrolled #toTop {
+    display: block;
+}
+
+#toTop {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-size: 24px;
+    padding: 10px;
+    border: none;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 999;
+}
+
+#loginModal {
+    display: none;
+    position: fixed;
+    top: 60px; /* трохи нижче кнопки */
+    right: 20px; /* вирівнюємо по правому краю */
+    z-index: 999;
+}
+
+.login-box {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 250px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+
+.login-box input {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+}
+
+.login-box button {
+    padding: 10px 20px;
+    background: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+/* Анімація для зображення Porsche */
+#porscheImage {
+    display: block;
+    margin: 40px auto;
+    max-width: 400px;
+    transition: transform 1s ease-in-out;
+    cursor: pointer;
+    position: relative;
+}
+
+#porscheImage.animate {
+    transform: translateX(150vw);
+}
+
